@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://entities/Coin.tscn" type="PackedScene" id=1]
+[ext_resource path="res://blocks/Blocks.tscn" type="PackedScene" id=2]
+[ext_resource path="res://rooms/Room.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64, 4 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4, 48 )
+
+[node name="Room1" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Blocks" parent="." instance=ExtResource( 2 )]
+tile_data = PoolIntArray( 65537, 33, 0, 65538, 14, 0, 65539, 14, 0, 65540, 14, 0, 65541, 14, 0, 65542, 14, 0, 65543, 14, 0, 65544, 14, 0, 65545, 14, 0, 65546, 14, 0, 65547, 14, 0, 65548, 14, 0, 65549, 14, 0, 65550, 14, 0, 65551, 14, 0, 65552, 2, 0, 131073, 15, 0, 131088, 15, 0, 196609, 15, 0, 196624, 15, 0, 262145, 15, 0, 262160, 15, 0, 327681, 15, 0, 327696, 15, 0, 393217, 15, 0, 393232, 15, 0, 458753, 15, 0, 458768, 15, 0, 524289, 15, 0, 524304, 15, 0, 589825, 15, 0, 589840, 15, 0, 655361, 15, 0, 655376, 15, 0, 720897, 15, 0, 720912, 15, 0, 786433, 7, 0, 786434, 14, 0, 786435, 14, 0, 786436, 14, 0, 786437, 14, 0, 786438, 14, 0, 786439, 14, 0, 786440, 14, 0, 786441, 14, 0, 786442, 14, 0, 786443, 14, 0, 786444, 2, 0, 786445, 32, 0, 786446, 32, 0, 786447, 33, 0, 786448, 9, 0 )
+
+[node name="Coin" parent="." instance=ExtResource( 1 )]
+position = Vector2( 72, 88 )
+
+[node name="RoomBottomCollider" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomBottomCollider"]
+position = Vector2( 72, 108 )
+shape = SubResource( 1 )
+
+[node name="RoomTopCollider" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomTopCollider"]
+position = Vector2( 72, 4 )
+shape = SubResource( 1 )
+
+[node name="RoomLeftCollider" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLeftCollider"]
+position = Vector2( 4, 56 )
+shape = SubResource( 2 )
+
+[node name="RoomRightCollider" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomRightCollider"]
+position = Vector2( 140, 56 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="RoomBottomCollider" to="." method="_on_RoomBottomCollider_body_entered"]
+[connection signal="body_entered" from="RoomTopCollider" to="." method="_on_RoomTopCollider_body_entered"]
+[connection signal="body_entered" from="RoomLeftCollider" to="." method="_on_RoomLeftCollider_body_entered"]
+[connection signal="body_entered" from="RoomRightCollider" to="." method="_on_RoomRightCollider_body_entered"]
