@@ -4,11 +4,16 @@ export var GRAVITY = 450.0
 export var JUMP = 200.0
 export var WALK_SPEED = 100.0
 
+var STATE = "PLAYING";
+
 var velocity = Vector2()
 
 onready var sprite = $AnimatedSprite
 
 func _physics_process(delta):
+	if (STATE == "PAUSED"):
+		return;
+	
 	if not is_on_floor():
 		velocity.y += delta * GRAVITY
 	else:
@@ -27,3 +32,9 @@ func _physics_process(delta):
 		velocity.y = -JUMP
 
 	move_and_slide(velocity, Vector2(0, -1))
+
+func pause():
+	STATE = "PAUSED";
+	
+func resume():
+	STATE = "PLAYING";

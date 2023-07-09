@@ -8,6 +8,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.074
+margin_bottom = 0.0079999
+color = Color( 0.113725, 0.168627, 0.32549, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchor_top = 0.963
+anchor_right = 1.0
+anchor_bottom = 1.037
+margin_top = -0.00400543
+margin_bottom = 0.00399017
+color = Color( 0.113725, 0.168627, 0.32549, 1 )
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+anchor_right = 0.042
+anchor_bottom = 1.037
+margin_right = -0.0640011
+margin_bottom = 0.00399017
+color = Color( 0.113725, 0.168627, 0.32549, 1 )
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+anchor_left = 0.75
+anchor_right = 1.0
+anchor_bottom = 1.037
+margin_left = -8.00002
+margin_bottom = 0.00399017
+color = Color( 0.113725, 0.168627, 0.32549, 1 )
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_left = 0.75
 anchor_top = 0.074
@@ -19,7 +48,7 @@ margin_bottom = -0.00400543
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_right = 48.0
-margin_bottom = 96.0
+margin_bottom = 95.0
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 48.0

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://entities/Cat.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/Room1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://RoomSpawn.gd" type="Script" id=3]
 [ext_resource path="res://ui/GameInterface.tscn" type="PackedScene" id=4]
 
 [node name="Main" type="Node2D"]
@@ -11,6 +12,7 @@ position = Vector2( 24, 88 )
 JUMP = 100.0
 
 [node name="RoomSpawn" type="Node2D" parent="."]
+script = ExtResource( 3 )
 
 [node name="Room1" parent="RoomSpawn" instance=ExtResource( 2 )]
 
