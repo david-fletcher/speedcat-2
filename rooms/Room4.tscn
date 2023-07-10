@@ -1,16 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://entities/Coin.tscn" type="PackedScene" id=1]
 [ext_resource path="res://blocks/Blocks.tscn" type="PackedScene" id=2]
 [ext_resource path="res://rooms/Room.gd" type="Script" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 64, 4 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 4, 48 )
-
-[node name="Room4" type="Node2D"]
+[node name="Room4" type="Node2D" groups=["ROOM"]]
 script = ExtResource( 3 )
 
 [node name="Blocks" parent="." instance=ExtResource( 2 )]
@@ -18,32 +12,3 @@ tile_data = PoolIntArray( 65537, 33, 0, 65538, 14, 0, 65539, 14, 0, 65540, 14, 0
 
 [node name="Coin" parent="." instance=ExtResource( 1 )]
 position = Vector2( 72, 88 )
-
-[node name="RoomBottomCollider" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomBottomCollider"]
-position = Vector2( 72, 108 )
-shape = SubResource( 1 )
-
-[node name="RoomTopCollider" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomTopCollider"]
-position = Vector2( 72, 4 )
-shape = SubResource( 1 )
-
-[node name="RoomLeftCollider" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLeftCollider"]
-position = Vector2( 4, 56 )
-shape = SubResource( 2 )
-
-[node name="RoomRightCollider" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomRightCollider"]
-position = Vector2( 140, 56 )
-shape = SubResource( 2 )
-
-[connection signal="body_entered" from="RoomBottomCollider" to="." method="_on_RoomBottomCollider_body_entered"]
-[connection signal="body_entered" from="RoomTopCollider" to="." method="_on_RoomTopCollider_body_entered"]
-[connection signal="body_entered" from="RoomLeftCollider" to="." method="_on_RoomLeftCollider_body_entered"]
-[connection signal="body_entered" from="RoomRightCollider" to="." method="_on_RoomRightCollider_body_entered"]

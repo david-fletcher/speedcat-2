@@ -7,6 +7,9 @@ var _velocity = Vector2();
 
 onready var _sprite = $AnimatedSprite;
 
+func _ready():
+	Global.CAT = self;
+
 func _physics_process(delta):
 	if not is_on_floor():
 		_velocity.y += delta * Global.GRAVITY;

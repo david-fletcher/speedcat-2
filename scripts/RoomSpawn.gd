@@ -4,30 +4,23 @@ onready var _currentRoom = $Room1;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_currentRoom.connect("room_changed", self, "_on_room_changed");
+	_currentRoom.load_room("");
 
-func _on_room_changed(dir, newRoom):
-	# stop signals from the current room
-	_currentRoom.disconnect("room_changed", self, "_on_room_changed");	
-	
-	# load the new scene
-	var newRoomScene = load("res://rooms/" + newRoom);
-	var newRoomInstance = newRoomScene.instance();
-	
-	var distanceToMove = Vector2(0.0, 0.0);
-	
-	if (dir == "left"):
-		distanceToMove = Vector2(-128.0, 0.0);
-	elif (dir == "right"):
-		distanceToMove = Vector2(128.0, 0.0);
-	elif (dir == "above"):
-		distanceToMove = Vector2(0.0, -96.0);
-	elif (dir == "below"):
-		distanceToMove = Vector2(0.0, 96.0);
+func _process(_delta):
+	var catPosition = Global.CAT.position;
+	if (_currentRoom._roomAbove != null && catPosition.distance_to(_currentRoom._roomAbove._CENTER) < catPosition.distance_to(_currentRoom._CENTER)):
+		room_changed(_currentRoom._roomAbove);
 		
-	newRoomInstance.position += distanceToMove;
+	elif (_currentRoom._roomBelow != null && catPosition.distance_to(_currentRoom._roomBelow._CENTER) < catPosition.distance_to(_currentRoom._CENTER)):
+		room_changed(_currentRoom._roomBelow);
 		
-	self.add_child(newRoomInstance);
-	
+	elif (_currentRoom._roomLeft != null && catPosition.distance_to(_currentRoom._roomLeft._CENTER) < catPosition.distance_to(_currentRoom._CENTER)):
+		room_changed(_currentRoom._roomLeft);
+		
+	elif (_currentRoom._roomRight != null && catPosition.distance_to(_currentRoom._roomRight._CENTER) < catPosition.distance_to(_currentRoom._CENTER)):
+		room_changed(_currentRoom._roomRight);
+
+
+func room_changed(newRoom):
 	# tell the camera to move towards the new room
-	Global.CAMERA.move_to(Global.CAMERA.position + distanceToMove);
+	Global.CAMERA.move_to(newRoom._CENTER);
