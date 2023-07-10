@@ -3,7 +3,7 @@ extends Camera2D
 var _state = "LOCKED";
 var _destination = null;
 
-const _SPEED = 0.1;
+const _SPEED = 0.15;
 const _EPSILON = 0.1;
 
 func _ready():

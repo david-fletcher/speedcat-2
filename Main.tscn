@@ -18,9 +18,9 @@ script = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 96, 54 )
+current = true
 script = ExtResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="GameInterface" parent="CanvasLayer" instance=ExtResource( 4 )]
